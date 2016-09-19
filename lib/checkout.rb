@@ -1,5 +1,3 @@
-# Marko Lovic
-#
 class UnknownProductError < StandardError
   attr_accessor :code
 
@@ -16,8 +14,8 @@ class Checkout
   end
 
   def scan(code)
-    raise UnknownProductError.new(code) unless product_codes.include?(code)
     # This would normally go in some other class responsible for managing products
+    raise UnknownProductError.new(code) unless product_codes.include?(code)
     @items[code] ? @items[code] += 1 : @items[code] = 1
   end
 

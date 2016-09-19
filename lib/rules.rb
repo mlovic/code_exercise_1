@@ -1,7 +1,7 @@
 class PricingRule
-  # TODO take a name for the rule as first argument e.g. for reporting
-  def initialize(&block)
+  def initialize(name = nil, &block)
     raise ArgumentError, "Rule must be initialized with a block" unless block_given?
+    @name = name
     @operation = block
   end
 
@@ -11,7 +11,7 @@ class PricingRule
 end
 
 VOUCHER_PROMO = 
-  PricingRule.new do |items, prices|
+  PricingRule.new("Summer voucher promotion") do |items, prices|
     (items["VOUCHER"] / 2) * prices["VOUCHER"]
   end
 

@@ -16,6 +16,7 @@ class BuyXGetOneFree < PricingRule
 end
 
 VOUCHER_PROMO = BuyXGetOneFree.new "VOUCHER", 1
+VOUCHER_PROMO.apply_discount items, prices
 ```
 
 You just have to set the `@discount_fn` variable, which always holds a proc or a lambda.
