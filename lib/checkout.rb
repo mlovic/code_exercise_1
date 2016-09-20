@@ -8,7 +8,9 @@ class UnknownProductError < StandardError
 end
 
 class Checkout
-  def initialize(rules=nil)
+  # Also could have used *rules to take variable number of arguments 
+  # instead of array.
+  def initialize(rules=nil) 
     @rules = rules
     @items = {}
   end
