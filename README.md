@@ -1,6 +1,6 @@
 I've implemented the rules basically as `Proc`s that take items and their prices as arguments. The `Proc` is wrapped in a `PricingRule` class that exposes an `apply_discount` method which returns the amount to be discounted. Apart from that there isn't any real abstraction here. I considered a few things like separating the discount condition from the amount calculation, and initializing rules for a specific item, but I thought it was all too restrictive for the little information given in the exercise.
 
-Right now the PriceRule abstraction is very flexible (the price rules are stateless and free of dependencies), and can be easily extended and built upon. For example by subclassing PricingRule. No code changes required:
+Right now the PriceRule abstraction is very flexible however (the price rules are stateless and free of dependencies), and can be easily extended and built upon. For example by subclassing PricingRule. No code changes required:
 
 <!--Right now the pricerule abstraction is completely separate from any checkout knowledge or product knowledge, so it's very flexible, although not very powerful. To improve this, one could subclass the RulePriceing-->
 
@@ -41,5 +41,10 @@ Additionally, by making all rules instantiations of classes instead of classes t
 ### Why not just have a duck type? 
 I also could have just adopted the convention of giving price rules an `apply_discount` method and forgot about any code sharing at all. There isn't much code to share after all. I realize this is often the best, cleanest, most rubylike approach, but I think that in this case, inheritance makes the "type" more explicit, and also makes the public interface easier to change, as it's only in one place.
 
+I made the table of products just be a global constant directly read by `Checkout`. This conforms to the example, although it would have been cleaner and easier to test to pass the products table to the `Checkout` initializer.
 
 The rest of the code is pretty straight forward. There are specs too!
+
+A few other considerations, which I didn't implement:
+ - Not using floating point numbers for prices
+ - Marking pricing rules as exclusive, so as to disallow coumpounding multiple discounts for the same item. This could be handled outside the `Checkout` class.
