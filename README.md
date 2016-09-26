@@ -21,7 +21,7 @@ VOUCHER_PROMO.apply_discount items, prices
 
 You just have to set the `@discount_fn` variable, which always holds a proc or a lambda.
 
-### Why inheritance over composition? Isn't that wrong?
+### Why inheritance over composition?
 I could have, for example, made `PricingRule` a module and mixed it in, but I think that it's more semantic this way. Everything truly is a PricingRule (it satisfies the Liskov substitution principle), so there's no reason not to. It also allows for multiple layers of inheritance. You can subclass the subclass:
 
   ```ruby
@@ -35,8 +35,9 @@ I could have, for example, made `PricingRule` a module and mixed it in, but I th
     end
   ```
 
-This looks like the beginning of an inheritance mess, but really it's just wrapping functions with functions, something very common in many languages.
-Additionally, by making all rules instantiations of classes instead of classes that include modules, you can build them dynamically, from data pulled out of a database for example. 
+This looks like the beginning of an inheritance mess, but really it's just wrapping functions in functions.
+
+Additionally, by making all rule objects instantiations of classes instead of classes that include modules, you can build them dynamically, from data pulled out of a database for example. 
 
 ### Why not just have a duck type? 
 I also could have just adopted the convention of giving price rules an `apply_discount` method and forgot about any code sharing at all. There isn't much code to share after all. I realize this is often the best, cleanest, most rubylike approach, but I think that in this case, inheritance makes the "type" more explicit, and also makes the public interface easier to change, as it's only in one place.
