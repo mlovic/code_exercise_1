@@ -21,6 +21,14 @@ GREEN_TEA_PROMO.apply_discount items, prices
 
 You just have to set the `@discount_fn` variable, which always holds a proc or a lambda.
 
+I also considered making the discount function a method that could be overrided:
+```ruby
+class BuyXGetOneFree < PricingRule
+  def discount(items, prices)
+    # ...
+```
+However, PricingRule.new accepts a block for the discount function so I would have to keep an instance variable anyway.
+
 ### Why inheritance over composition?
 I could have, for example, made `PricingRule` a module and mixed it in, but I think that it's more semantic this way. Everything truly is a PricingRule (it satisfies the Liskov substitution principle), so there's no reason not to. It also allows for multiple layers of inheritance. You can subclass the subclass:
 
