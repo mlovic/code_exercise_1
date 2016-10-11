@@ -11,15 +11,15 @@ class PricingRule
   end
 end
 
-VOUCHER_PROMO = 
-  PricingRule.new("Summer voucher promotion") do |items, prices|
-    (items["VOUCHER"] / 2) * prices["VOUCHER"]
+GREEN_TEA_PROMO = 
+  PricingRule.new("Summer green tea promotion") do |items, prices|
+    (items["GR1"] / 2) * prices["GR1"]
   end
 
-TSHIRT_BULK_PROMO = 
+STRAWBERRIES_BULK_PROMO = 
   PricingRule.new do |items, _|
-    num_tshirts = items["TSHIRT"]
-    num_tshirts >= 3 ? num_tshirts * 1 : 0
+    num_strawberries = items["SR1"] || 0
+    num_strawberries >= 3 ? num_strawberries * 0.5 : 0
   end
 
 # Could also be:
@@ -32,4 +32,4 @@ TSHIRT_BULK_PROMO =
 #   end
 # end
 #
-# VOUCHER_PROMO = BuyXGetOneFree.new "VOUCHER", 1
+# GREEN_TEA_PROMO = BuyXGetOneFree.new "GR1", 1

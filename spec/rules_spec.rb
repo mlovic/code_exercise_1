@@ -13,35 +13,35 @@ RSpec.describe PricingRule do
   end
 end
 
-RSpec.describe TSHIRT_BULK_PROMO do
-  let(:prices) { {'TSHIRT' => 25} }
+RSpec.describe STRAWBERRIES_BULK_PROMO do
+  let(:prices) { {'SR1' => 25} }
 
   it 'offers no discount if there are less than 3 tshirts' do
-    items = {'TSHIRT' => 2}
-    expect(TSHIRT_BULK_PROMO.apply_discount(items, prices)).to eq 0
+    items = {'SR1' => 2}
+    expect(STRAWBERRIES_BULK_PROMO.apply_discount(items, prices)).to eq 0
   end
 
   it 'offers discount on all tshirts when there are 3 or more tshirts' do
-    items = {'TSHIRT' => 3}
-    expect(TSHIRT_BULK_PROMO.apply_discount(items, prices)).to eq 3
+    items = {'SR1' => 3}
+    expect(STRAWBERRIES_BULK_PROMO.apply_discount(items, prices)).to eq 3
   end
 
   it 'offers discount on only tshirts' do
-    items = {'TSHIRT' => 2, 'MUG' => 4}
-    expect(TSHIRT_BULK_PROMO.apply_discount(items, prices)).to eq 0
+    items = {'SR1' => 2, 'MUG' => 4}
+    expect(STRAWBERRIES_BULK_PROMO.apply_discount(items, prices)).to eq 0
   end
 end
 
-RSpec.describe VOUCHER_PROMO do
-  let(:prices) { {'VOUCHER' => 5} }
+RSpec.describe GREEN_TEA_PROMO do
+  let(:prices) { {'GR1' => 5} }
 
   it 'offers no discount if only one voucher is present' do
-    items = {'VOUCHER' => 1}
-    expect(VOUCHER_PROMO.apply_discount(items, prices)).to eq 0
+    items = {'GR1' => 1}
+    expect(GREEN_TEA_PROMO.apply_discount(items, prices)).to eq 0
   end
 
   it 'subtracts the price of only one discount if 3 vouchers are present' do
-    items = {'VOUCHER' => 3}
-    expect(VOUCHER_PROMO.apply_discount(items, prices)).to eq 5
+    items = {'GR1' => 3}
+    expect(GREEN_TEA_PROMO.apply_discount(items, prices)).to eq 5
   end
 end

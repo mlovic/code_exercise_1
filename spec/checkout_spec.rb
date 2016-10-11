@@ -2,9 +2,7 @@ require_relative '../lib/checkout'
 
 RSpec.describe Checkout do
 
-  PRODUCTS = [{code: 'VOUCHER', price: 5.0},
-              {code: 'TSHIRT' , price: 20.0},
-              {code: 'MUG'    , price: 7.5}]
+  PRODUCTS = [{code: 'VOUCHER', price: 5.0}]
 
   describe "scan" do
     it "raises error if it doesn't recognize code" do
