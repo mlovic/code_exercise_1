@@ -23,7 +23,7 @@ RSpec.describe STRAWBERRIES_BULK_PROMO do
 
   it 'offers discount on all tshirts when there are 3 or more tshirts' do
     items = {'SR1' => 3}
-    expect(STRAWBERRIES_BULK_PROMO.apply_discount(items, prices)).to eq 3
+    expect(STRAWBERRIES_BULK_PROMO.apply_discount(items, prices)).to eq 1.5
   end
 
   it 'offers discount on only tshirts' do

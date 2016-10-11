@@ -2,7 +2,7 @@ require_relative '../lib/checkout'
 
 RSpec.describe Checkout do
 
-  PRODUCTS = [{code: 'VOUCHER', price: 5.0}]
+  PRODUCTS = [{code: "SR1", price: 5.0}]
 
   describe "scan" do
     it "raises error if it doesn't recognize code" do
@@ -25,7 +25,7 @@ RSpec.describe Checkout do
     it "subtracts sum of discounts from subtotal" do
       allow(rule1).to receive(:apply_discount).and_return 1
       allow(rule2).to receive(:apply_discount).and_return 2
-      co.scan("VOUCHER")
+      co.scan("SR1")
       expect(co.total).to eq 2
     end
       
