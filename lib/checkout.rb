@@ -34,7 +34,7 @@ class Checkout
       end
 
     # An "actual" discount is a positive value
-    subtotal - discount
+    (subtotal - discount).round(2)
   end
 
   private
